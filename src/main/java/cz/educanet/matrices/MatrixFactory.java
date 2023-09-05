@@ -25,6 +25,7 @@ public class MatrixFactory implements IMatrixFactory {
 
     @Override
     public IMatrix createIdentity(int size) {
+        if(size < 0) throw new IllegalArgumentException();
         double[][] d = new double[size][size];
         for (int i = 0; i < size; i++) {
             d[i][i] = 1;

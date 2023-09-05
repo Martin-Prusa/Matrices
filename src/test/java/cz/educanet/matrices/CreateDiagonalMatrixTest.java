@@ -11,18 +11,24 @@ class CreateDiagonalMatrixTest {
 
     @Test
     public void should_Succeed_When_NumberOnCoordinatesIsValid() {
-        double[] diagonale = new double[]{1, 2, 3};
-        IMatrix m = matrixFactory.createDiagonal(diagonale);
-        Utils.checkDiagonal(m, diagonale);
+        double[][] diagonals = new double[][]{{1, 2, 3}, {4,5,6,7,7}};
+
+        for (double[] diagonale : diagonals) {
+            IMatrix m = matrixFactory.createDiagonal(diagonale);
+            Utils.checkDiagonal(m, diagonale);
+        }
     }
 
     @Test
     public void should_Succeed_WhenSizeIsValid() {
-        double[] diagonale = new double[]{1, 2, 3};
-        IMatrix m = matrixFactory.createDiagonal(diagonale);
+        double[][] diagonals = new double[][]{{1, 2, 3}, {4,5,6,7,7}};
 
-        assertEquals(diagonale.length, m.getRows());
-        assertEquals(diagonale.length, m.getColumns());
+        for (double[] diagonale : diagonals) {
+            IMatrix m = matrixFactory.createDiagonal(diagonale);
+
+            assertEquals(diagonale.length, m.getRows());
+            assertEquals(diagonale.length, m.getColumns());
+        }
     }
 
     @Test
