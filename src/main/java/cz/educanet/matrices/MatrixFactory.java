@@ -7,28 +7,28 @@ public class MatrixFactory implements IMatrixFactory {
     private MatrixFactory() {
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public IMatrix create(double[][] data) {
-        return null;
+        return new Matrix(data);
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public IMatrix createDiagonal(double[] diagonal) {
-        return null;
+        double[][] d = new double[diagonal.length][diagonal.length];
+        for (int i = 0; i < diagonal.length; i++) {
+            d[i][i] = diagonal[i];
+        }
+
+        return new Matrix(d);
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public IMatrix createIdentity(int size) {
-        return null;
+        double[][] d = new double[size][size];
+        for (int i = 0; i < size; i++) {
+            d[i][i] = 1;
+        }
+        return new Matrix(d);
     }
 
     @Override
