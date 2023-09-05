@@ -13,11 +13,21 @@ class CreateDiagonalMatrixTest {
     public void should_Succeed_When_NumberOnCoordinatesIsValid() {
         double[] diagonale = new double[]{1, 2, 3};
         IMatrix m = matrixFactory.createDiagonal(diagonale);
+        Utils.checkDiagonal(m, diagonale);
+    }
+
+    @Test
+    public void should_Succeed_WhenSizeIsValid() {
+        double[] diagonale = new double[]{1, 2, 3};
+        IMatrix m = matrixFactory.createDiagonal(diagonale);
 
         assertEquals(diagonale.length, m.getRows());
         assertEquals(diagonale.length, m.getColumns());
+    }
 
-        Utils.checkDiagonal(m, diagonale);
+    @Test
+    public void should_ThrowException_When_EmptyArray() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> matrixFactory.createDiagonal(new double[]{}));
     }
 
 }

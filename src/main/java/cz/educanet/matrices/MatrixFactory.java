@@ -14,6 +14,7 @@ public class MatrixFactory implements IMatrixFactory {
 
     @Override
     public IMatrix createDiagonal(double[] diagonal) {
+        if(diagonal.length == 0) throw new IllegalArgumentException();
         double[][] d = new double[diagonal.length][diagonal.length];
         for (int i = 0; i < diagonal.length; i++) {
             d[i][i] = diagonal[i];
