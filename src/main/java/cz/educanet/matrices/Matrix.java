@@ -13,6 +13,18 @@ public class Matrix implements IMatrix {
      */
     @Override
     public IMatrix times(IMatrix matrix) {
+        if (getColumns() != matrix.getRows())
+            throw new IllegalArgumentException("the number of columns in the first matrix must be equal to the number of rows in the second matrix");
+        double[][] result = new double[getRows()][matrix.getColumns()];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[i].length; j++) {
+                for (int k = 0; k < matrix.getRows(); k++) {
+                    result[i][j] += (get(i, k) * matrix.get(k, j));
+                }
+            }
+        }
+
         return null;
     }
 
@@ -29,7 +41,8 @@ public class Matrix implements IMatrix {
 
     @Override
     public IMatrix add(IMatrix matrix) {
-        if(getRows() != matrix.getRows() || getColumns() != matrix.getColumns()) throw new IllegalArgumentException("matrices must have an equal number of rows and columns to be added");
+        if (getRows() != matrix.getRows() || getColumns() != matrix.getColumns())
+            throw new IllegalArgumentException("matrices must have an equal number of rows and columns to be added");
         double[][] sum = new double[getRows()][getColumns()];
         for (int i = 0; i < rawArray.length; i++) {
             for (int j = 0; j < rawArray[i].length; j++) {
@@ -41,7 +54,7 @@ public class Matrix implements IMatrix {
 
     @Override
     public IMatrix transpose() {
-        if(rawArray.length == 0) return new Matrix(new double[][]{});
+        if (rawArray.length == 0) return new Matrix(new double[][]{});
         double[][] transposed = new double[getColumns()][getRows()];
         for (int i = 0; i < rawArray.length; i++) {
             for (int j = 0; j < rawArray[i].length; j++) {
@@ -66,10 +79,10 @@ public class Matrix implements IMatrix {
 
     @Override
     public boolean isDiagonal() {
-        if(!isSquare()) return false;
+        if (!isSquare()) return false;
         for (int i = 0; i < rawArray.length; i++) {
             for (int j = 0; j < rawArray[i].length; j++) {
-                if(i != j && rawArray[i][j] != 0) return false;
+                if (i != j && rawArray[i][j] != 0) return false;
             }
         }
 
@@ -78,7 +91,7 @@ public class Matrix implements IMatrix {
 
     @Override
     public Number getTrace() {
-        if(!isSquare()) throw new RuntimeException("Must be square matrix");
+        if (!isSquare()) throw new RuntimeException("Must be square matrix");
         double sum = 0;
         for (int i = 0; i < rawArray.length; i++) {
             sum += rawArray[i][i];
@@ -101,7 +114,7 @@ public class Matrix implements IMatrix {
 
     @Override
     public double get(int n, int m) {
-        if(n >= getRows() || n < 0 || m >= getColumns() || m < 0)
+        if (n >= getRows() || n < 0 || m >= getColumns() || m < 0)
             throw new IllegalArgumentException();
 
         return rawArray[n][m];
