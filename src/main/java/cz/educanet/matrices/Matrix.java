@@ -66,12 +66,14 @@ public class Matrix implements IMatrix {
         return true;
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public Number getTrace() {
-        return null;
+        if(!isSquare()) throw new Error("Must be square matrix");
+        double sum = 0;
+        for (int i = 0; i < rawArray.length; i++) {
+            sum += rawArray[i][i];
+        }
+        return sum;
     }
 
     @Override
