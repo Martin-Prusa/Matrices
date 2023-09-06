@@ -48,12 +48,10 @@ public class Matrix implements IMatrix {
         return 0;
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public boolean isSquare() {
-        return false;
+        if(rawArray[0] != null) return rawArray.length == rawArray[0].length;
+        return true;
     }
 
     /**
