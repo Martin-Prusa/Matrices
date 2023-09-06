@@ -25,7 +25,7 @@ public class Matrix implements IMatrix {
             }
         }
 
-        return null;
+        return new Matrix(result);
     }
 
     @Override
