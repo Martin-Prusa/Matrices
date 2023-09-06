@@ -32,12 +32,16 @@ public class Matrix implements IMatrix {
         return null;
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public IMatrix transpose() {
-        return null;
+        if(rawArray.length == 0) return new Matrix(new double[][]{});
+        double[][] transposed = new double[rawArray[0].length][rawArray.length];
+        for (int i = 0; i < rawArray.length; i++) {
+            for (int j = 0; j < rawArray[i].length; j++) {
+                transposed[j][i] = rawArray[i][j];
+            }
+        }
+        return new Matrix(transposed);
     }
 
     /**
@@ -50,7 +54,7 @@ public class Matrix implements IMatrix {
 
     @Override
     public boolean isSquare() {
-        if(rawArray[0] != null) return rawArray.length == rawArray[0].length;
+        if(rawArray.length != 0) return rawArray.length == rawArray[0].length;
         return true;
     }
 
