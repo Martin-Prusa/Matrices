@@ -13,7 +13,7 @@ class IsDiagonalMatrixTest {
     private final IMatrixFactory matrixFactory = MatrixFactory.instance;
 
     @Test
-    public void should_BeDiagonal_When_MatrixIsDiagonal() {
+    public void should_ReturnTrue_When_MatrixIsDiagonal() {
         IMatrix[] matrices = new IMatrix[]{
                 matrixFactory.createIdentity(5),
                 matrixFactory.createDiagonal(new double[]{5,6,9,1}),
@@ -26,7 +26,7 @@ class IsDiagonalMatrixTest {
     }
 
     @Test
-    public void should_NotBeDiagonal_When_MatrixIsNotSquare() {
+    public void should_ReturnFalse_When_MatrixIsNotSquare() {
         IMatrix[] matrices = new IMatrix[]{
                 matrixFactory.create(new double[][]{{3, 2, 4}, {9, 8, 7}}),
                 matrixFactory.create(new double[][]{{2}, {4}}),
@@ -38,7 +38,7 @@ class IsDiagonalMatrixTest {
     }
 
     @Test
-    public void should_NotBeDiagonal_When_MatrixIsNotDiagonal() {
+    public void should_ReturnFalse_When_MatrixIsNotDiagonal() {
         IMatrix[] matrices = new IMatrix[]{
                 matrixFactory.create(new double[][]{{3, 2, 4}, {9, 8, 7}, {23, 33, 43}}),
                 matrixFactory.create(new double[][]{{3, 2}, {9, 8}})

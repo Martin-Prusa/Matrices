@@ -68,7 +68,7 @@ public class Matrix implements IMatrix {
 
     @Override
     public Number getTrace() {
-        if(!isSquare()) throw new Error("Must be square matrix");
+        if(!isSquare()) throw new RuntimeException("Must be square matrix");
         double sum = 0;
         for (int i = 0; i < rawArray.length; i++) {
             sum += rawArray[i][i];
