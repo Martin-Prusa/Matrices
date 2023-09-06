@@ -16,12 +16,15 @@ public class Matrix implements IMatrix {
         return null;
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public IMatrix times(Number scalar) {
-        return null;
+        double[][] d = new double[getRows()][getColumns()];
+        for (int i = 0; i < d.length; i++) {
+            for (int j = 0; j < d[i].length; j++) {
+                d[i][j] = scalar.doubleValue() * rawArray[i][j];
+            }
+        }
+        return new Matrix(d);
     }
 
     @Override
