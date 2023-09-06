@@ -24,18 +24,22 @@ public class Matrix implements IMatrix {
         return null;
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public IMatrix add(IMatrix matrix) {
-        return null;
+        if(getRows() != matrix.getRows() || getColumns() != matrix.getColumns()) throw new IllegalArgumentException("matrices must have an equal number of rows and columns to be added");
+        double[][] sum = new double[getRows()][getColumns()];
+        for (int i = 0; i < rawArray.length; i++) {
+            for (int j = 0; j < rawArray[i].length; j++) {
+                sum[i][j] = rawArray[i][j] + matrix.get(i, j);
+            }
+        }
+        return new Matrix(sum);
     }
 
     @Override
     public IMatrix transpose() {
         if(rawArray.length == 0) return new Matrix(new double[][]{});
-        double[][] transposed = new double[rawArray[0].length][rawArray.length];
+        double[][] transposed = new double[getColumns()][getRows()];
         for (int i = 0; i < rawArray.length; i++) {
             for (int j = 0; j < rawArray[i].length; j++) {
                 transposed[j][i] = rawArray[i][j];
@@ -54,8 +58,7 @@ public class Matrix implements IMatrix {
 
     @Override
     public boolean isSquare() {
-        if(rawArray.length != 0) return rawArray.length == rawArray[0].length;
-        return true;
+        return getRows() == getColumns();
     }
 
     @Override
