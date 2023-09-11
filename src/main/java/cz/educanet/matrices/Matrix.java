@@ -61,9 +61,6 @@ public class Matrix implements IMatrix {
         return new Matrix(transposed);
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public double determinant() {
         if(!isSquare()) throw new RuntimeException("Must be square matrix");
