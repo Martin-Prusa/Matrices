@@ -8,9 +8,6 @@ public class Matrix implements IMatrix {
         this.rawArray = rawArray;
     }
 
-    /**
-     * TODO: Implement
-     */
     @Override
     public IMatrix times(IMatrix matrix) {
         if (getColumns() != matrix.getRows())
