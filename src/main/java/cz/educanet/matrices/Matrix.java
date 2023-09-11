@@ -66,7 +66,33 @@ public class Matrix implements IMatrix {
      */
     @Override
     public double determinant() {
-        return 0;
+        if(!isSquare()) throw new RuntimeException("Must be square matrix");
+
+        double det = 0;
+
+        if(getRows() == 1) return rawArray[0][0];
+
+        for (int i = 0; i < getColumns(); i++) {
+
+            double[][] newRawArray = new double[getRows()-1][getColumns()-1];
+            for (int j = 0; j < newRawArray.length; j++) {
+                int skip = 0;
+                for (int k = 0; k < newRawArray[j].length+1; k++) {
+                    if(k == i) {
+                        skip++;
+                        continue;
+                    }
+                    newRawArray[j][k-skip] = rawArray[j+1][k];
+                }
+            }
+
+            IMatrix newMatrix = new Matrix(newRawArray);
+
+
+            det += (get(0, i)*newMatrix.determinant()) * (i % 2 == 1 ? -1 : 1);
+        }
+
+        return det;
     }
 
     @Override
